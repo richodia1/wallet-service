@@ -7,7 +7,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 import java.util.UUID;
-
 @Entity
 @Table(name = "bank_accounts")
 @Getter
@@ -39,6 +38,10 @@ public class BankAccount {
 
     @Column(nullable = false)
     private String currency;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "wallet_id", nullable = false)
+    private Wallet wallet;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

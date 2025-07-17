@@ -4,9 +4,10 @@ import lombok.Data;
 
 @Data
 public class CreateBankAccountRequestDto {
-    private Long customerId;
+    private String customerReference;
+    private String bankName;
     private String accountNumber;
     private String accountName;
-    private String bankName;
-    private String bankCode;
+    private String accountType; // "Savings" or "Current"
+    private String currency;
 }

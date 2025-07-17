@@ -1,6 +1,12 @@
 server:
   port: 8098
 
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
 spring:
   datasource:
     url: jdbc:postgresql://127.0.0.1/wallet-prototype

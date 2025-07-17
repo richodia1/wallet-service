@@ -1,7 +1,9 @@
 package com.wallet.service.prototype.controllers;
 
+import com.wallet.service.prototype.dtos.request.CreateBankAccountRequestDto;
 import com.wallet.service.prototype.dtos.request.CreateWalletRequestDto;
 import com.wallet.service.prototype.dtos.request.FundWalletRequestDto;
+import com.wallet.service.prototype.dtos.request.LinkBankAccountRequestDto;
 import com.wallet.service.prototype.models.ResponseModel;
 import com.wallet.service.prototype.services.WalletService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +19,7 @@ public class WalletController {
 
     private final WalletService walletService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<ResponseModel> createWallet(@RequestBody CreateWalletRequestDto request) {
         return walletService.createWallet(request);
     }
@@ -30,7 +32,14 @@ public class WalletController {
     public ResponseEntity<ResponseModel> withdrawFromWallet(@RequestBody FundWalletRequestDto requestDto) {
         return walletService.withdrawFromWalletToBankAccount(requestDto);
     }
-
+    @PostMapping("/link-bank-account-to-wallet")
+    public ResponseEntity<ResponseModel> linkBankAccountToWallet(@RequestBody LinkBankAccountRequestDto requestDto) {
+        return walletService.linkBankAccountToWallet(requestDto);
+    }
+    @PostMapping("/add-bank")
+    public ResponseEntity<ResponseModel> createBank(@RequestBody CreateBankAccountRequestDto requestDto) {
+        return walletService.createBankAccount(requestDto);
+    }
     @GetMapping("/customer/{customerReference}")
     public ResponseEntity<ResponseModel> getWalletByCustomerReference(@PathVariable String customerReference) {
         return walletService.getWalletByCustomerReference(customerReference);
