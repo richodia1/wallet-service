@@ -16,7 +16,7 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    @PostMapping
+    @PostMapping("/add-customer")
     public ResponseEntity<ResponseModel> createCustomer(@Valid @RequestBody CreateCustomerRequestDto requestDto) {
         return customerService.createCustomer(requestDto);
     }
