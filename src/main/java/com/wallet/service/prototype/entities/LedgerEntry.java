@@ -1,15 +1,19 @@
 package com.wallet.service.prototype.entities;
-
 import com.wallet.service.prototype.enums.LedgerType;
 import com.wallet.service.prototype.enums.TransactionSource;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
-
 @Entity
 @Table(name = "ledger_entries")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class LedgerEntry {
 
     @Id
@@ -25,11 +29,12 @@ public class LedgerEntry {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private LedgerType type; // DEBIT or CREDIT
+    private LedgerType type; // CREDIT or DEBIT
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TransactionSource source; // e.g., FUND, WITHDRAW, TRANSFER
+    private TransactionSource source; // FUND, WITHDRAW, TRANSFER, etc.
+
     @Column(name = "previous_balance", nullable = false, precision = 38, scale = 2)
     private BigDecimal previousBalance;
 
@@ -37,8 +42,8 @@ public class LedgerEntry {
     private BigDecimal currentBalance;
 
     @Column(nullable = false)
-    private String reference; // Could be a transaction ID
+    private String reference;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private Instant timeStamp = Instant.now();
 }

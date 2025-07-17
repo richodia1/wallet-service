@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 public class FundWalletRequestDto {
-    private UUID walletId;
+    private String customerReference;         // Replaces walletId
     private BigDecimal amount;
     private String narration;
 }
