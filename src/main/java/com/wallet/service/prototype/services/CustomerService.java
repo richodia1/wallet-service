@@ -1,10 +1,12 @@
 package com.wallet.service.prototype.services;
 
 import com.wallet.service.prototype.dtos.request.CreateCustomerRequestDto;
+import com.wallet.service.prototype.dtos.response.CustomerResponseDto;
 import com.wallet.service.prototype.entities.Customer;
 import com.wallet.service.prototype.models.ResponseModel;
 import com.wallet.service.prototype.repositories.CustomerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +55,7 @@ public class CustomerService {
                 .phoneNumber(saved.getPhoneNumber())
                 .status(saved.getStatus())
                 .build();
+        return ResponseModel.successResponse(responseDto, HttpStatus.OK.value(), "Customer created successfully");
 
-        return ResponseEntity.ok(ResponseModel.success("Customer created successfully", responseDto));
     }
 }
